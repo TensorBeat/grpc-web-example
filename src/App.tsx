@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { DatalakeServiceClient } from "./generated/grpc-web/tensorbeat/DatalakeServiceClientPb";
+import { GetSongsRequest } from "./generated/grpc-web/tensorbeat/datalake_pb";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = () => {
+  useEffect(() => {
+    const client = new DatalakeServiceClient("http://34.66.24.120");
+    let req: GetSongsRequest = new GetSongsRequest();
+
+    client.getSongs(req, null).then((res) => {
+      console.log(res.toObject());
+    });
+  });
+
+  return <div>Hello World</div>;
+};
 
 export default App;
