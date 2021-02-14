@@ -4,7 +4,9 @@ import { GetSongsRequest } from "./generated/grpc-web/tensorbeat/datalake_pb";
 
 export const App = () => {
   useEffect(() => {
-    const client = new DatalakeServiceClient("http://grpc-web.tensorbeat.com");
+    const client = new DatalakeServiceClient(
+      "http://grpc-web.test.tensorbeat.com"
+    );
     let req: GetSongsRequest = new GetSongsRequest();
 
     client.getSongs(req, null).then((res) => {
