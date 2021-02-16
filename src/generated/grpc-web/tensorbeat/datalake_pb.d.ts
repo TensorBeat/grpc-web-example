@@ -4,8 +4,11 @@ import * as tensorbeat_common_pb from '../tensorbeat/common_pb';
 
 
 export class GetSongsRequest extends jspb.Message {
-  getMetadataMap(): jspb.Map<string, string>;
-  clearMetadataMap(): GetSongsRequest;
+  getTagsMap(): jspb.Map<string, string>;
+  clearTagsMap(): GetSongsRequest;
+
+  getOperator(): LogicalOperator;
+  setOperator(value: LogicalOperator): GetSongsRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GetSongsRequest.AsObject;
@@ -17,7 +20,8 @@ export class GetSongsRequest extends jspb.Message {
 
 export namespace GetSongsRequest {
   export type AsObject = {
-    metadataMap: Array<[string, string]>,
+    tagsMap: Array<[string, string]>,
+    operator: LogicalOperator,
   }
 }
 
@@ -42,10 +46,10 @@ export namespace GetSongsResponse {
 }
 
 export class AddSongsRequest extends jspb.Message {
-  getSongsList(): Array<tensorbeat_common_pb.File>;
-  setSongsList(value: Array<tensorbeat_common_pb.File>): AddSongsRequest;
+  getSongsList(): Array<tensorbeat_common_pb.AddFile>;
+  setSongsList(value: Array<tensorbeat_common_pb.AddFile>): AddSongsRequest;
   clearSongsList(): AddSongsRequest;
-  addSongs(value?: tensorbeat_common_pb.File, index?: number): tensorbeat_common_pb.File;
+  addSongs(value?: tensorbeat_common_pb.AddFile, index?: number): tensorbeat_common_pb.AddFile;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AddSongsRequest.AsObject;
@@ -57,7 +61,7 @@ export class AddSongsRequest extends jspb.Message {
 
 export namespace AddSongsRequest {
   export type AsObject = {
-    songsList: Array<tensorbeat_common_pb.File.AsObject>,
+    songsList: Array<tensorbeat_common_pb.AddFile.AsObject>,
   }
 }
 
@@ -79,3 +83,89 @@ export namespace AddSongsResponse {
   }
 }
 
+export class AddTagsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): AddTagsRequest;
+
+  getTagsMap(): jspb.Map<string, string>;
+  clearTagsMap(): AddTagsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddTagsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsRequest): AddTagsRequest.AsObject;
+  static serializeBinaryToWriter(message: AddTagsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsRequest;
+  static deserializeBinaryFromReader(message: AddTagsRequest, reader: jspb.BinaryReader): AddTagsRequest;
+}
+
+export namespace AddTagsRequest {
+  export type AsObject = {
+    id: string,
+    tagsMap: Array<[string, string]>,
+  }
+}
+
+export class AddTagsResponse extends jspb.Message {
+  getSuccessful(): boolean;
+  setSuccessful(value: boolean): AddTagsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddTagsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTagsResponse): AddTagsResponse.AsObject;
+  static serializeBinaryToWriter(message: AddTagsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTagsResponse;
+  static deserializeBinaryFromReader(message: AddTagsResponse, reader: jspb.BinaryReader): AddTagsResponse;
+}
+
+export namespace AddTagsResponse {
+  export type AsObject = {
+    successful: boolean,
+  }
+}
+
+export class RemoveTagsRequest extends jspb.Message {
+  getId(): string;
+  setId(value: string): RemoveTagsRequest;
+
+  getTagsMap(): jspb.Map<string, string>;
+  clearTagsMap(): RemoveTagsRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveTagsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsRequest): RemoveTagsRequest.AsObject;
+  static serializeBinaryToWriter(message: RemoveTagsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsRequest;
+  static deserializeBinaryFromReader(message: RemoveTagsRequest, reader: jspb.BinaryReader): RemoveTagsRequest;
+}
+
+export namespace RemoveTagsRequest {
+  export type AsObject = {
+    id: string,
+    tagsMap: Array<[string, string]>,
+  }
+}
+
+export class RemoveTagsResponse extends jspb.Message {
+  getSuccessful(): boolean;
+  setSuccessful(value: boolean): RemoveTagsResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveTagsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTagsResponse): RemoveTagsResponse.AsObject;
+  static serializeBinaryToWriter(message: RemoveTagsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTagsResponse;
+  static deserializeBinaryFromReader(message: RemoveTagsResponse, reader: jspb.BinaryReader): RemoveTagsResponse;
+}
+
+export namespace RemoveTagsResponse {
+  export type AsObject = {
+    successful: boolean,
+  }
+}
+
+export enum LogicalOperator { 
+  UNKNOWN_LOGICAL_OPERATOR = 0,
+  OR = 1,
+  AND = 2,
+  NOT = 3,
+}
